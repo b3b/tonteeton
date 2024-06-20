@@ -59,7 +59,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           annotations: ${{ steps.meta.outputs.annotations }}
           outputs: |
-            type=image,name=target,annotation-index.org.opencontainers.image.description=[get-simple-price enclave](https://github.com/tonteeton/tonteeton/actions/runs/${{ github.run_id }})
+            type=image,name=target,annotation-index.org.opencontainers.image.description=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.description'] }}\nBuild action: https://github.com/tonteeton/tonteeton/actions/runs/${{ github.run_id }}
           secrets: |
             "signingkey=${{ secrets.SIGNINGKEY }}"
 
@@ -68,7 +68,7 @@ jobs:
         with:
           subject-name: ghcr.io/tonteeton/get-simple-price
           subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
+          push-to-registry: false
 
       - name: Report enclave measurment
         run: |
