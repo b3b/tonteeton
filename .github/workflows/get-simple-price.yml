@@ -59,7 +59,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           annotations: ${{ steps.meta.outputs.annotations }}
           outputs: |
-            type=image,name=target,annotation-index.org.opencontainers.image.description=https://github.com/tonteeton/tonteeton/actions/runs/${{ github.run_id }}
+            type=image,name=target,annotation-index.org.opencontainers.image.description=[get-simple-price enclave](https://github.com/tonteeton/tonteeton/actions/runs/${{ github.run_id }})
           secrets: |
             "signingkey=${{ secrets.SIGNINGKEY }}"
 
